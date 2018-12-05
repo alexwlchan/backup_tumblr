@@ -22,7 +22,8 @@ def save_all_media_files(metadata):
         try:
             save_post_media_files(info_path)
         except Exception:
-            print(f"Error trying to save post {os.path.basename(info_path)}")
+            post_id = os.path.basename(os.path.dirname(info_path))
+            print(f"Error trying to save post {post_id}")
             raise
 
 
