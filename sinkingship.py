@@ -105,3 +105,15 @@ def get_all_posts(*, blog_identifier, api_key):
             params["before"] = earliest_timestamp - 1
 
     return tqdm.tqdm(iterator(), total=total_posts)
+
+
+def find_all_metadata_files(path):
+    if not os.path.exists(path):
+        raise ValueError(f"Asked to save media files in non-existent dir {path!r}?")
+
+    if not os.path.isdir(path):
+        raise ValueError(f"Asked to save media files in non-directory {path!r}?")
+
+    for root, _, filenames in os.walk(path):
+        if "info.json" in filenames:
+            yield os.path.join(root, "info.json")
