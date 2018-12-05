@@ -131,8 +131,8 @@ def _download_asset(post_dir, url, suffix=""):
         return
     try:
         urlretrieve(url, out_path)
-    except HTTPError:
-        print(url)
+    except HTTPError as err:
+        print(f"Error trying to download URL {url!r} ({err})")
         return
 
 
