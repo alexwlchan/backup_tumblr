@@ -2,6 +2,7 @@
 # -*- encoding: utf-8
 
 import os
+import traceback
 
 import click
 import tqdm
@@ -23,8 +24,9 @@ def save_all_media_files(metadata):
             save_post_media_files(info_path)
         except Exception:
             post_id = os.path.basename(os.path.dirname(info_path))
-            print(f"Error trying to save post {post_id}")
-            raise
+            traceback.print_exc()
+            print(f"Error trying to save post {post_id}!!")
+            print("~")
 
 
 if __name__ == '__main__':
