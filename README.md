@@ -91,6 +91,10 @@ If that sentence meant nothing: don't worry, the scripts will ask you for any in
 
     I'm reading the `total_posts` parameter from the API responses, and paginating through it as expected -- I have no idea what causes the discrepancy.
 
+## Acknowledgements
+
+Hat tip to [@cesy](https://github.com/cesy/) for nudging me to post it, and providing useful feedback on the initial version.
+
 ## Licence
 
 MIT.
