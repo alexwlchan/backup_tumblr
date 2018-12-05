@@ -87,6 +87,10 @@ If that sentence meant nothing: don't worry, the scripts will ask you for any in
 *   These scripts are provided "as is".
     File an issue if you have a problem, but I don't have much time for maintenance right now.
 
+*   Sometimes the Tumblr API claims to have more posts than it actually returns, and the effect is that the script appears to stop early, e.g. at 96%.
+
+    I'm reading the `total_posts` parameter from the API responses, and paginating through it as expected -- I have no idea what causes the discrepancy.
+
 ## Licence
 
 MIT.
