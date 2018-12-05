@@ -235,7 +235,7 @@ def save_post_media_files(info_path):
             print(f"Unable to download video for {post_id!r}: {source_url}")
 
         else:
-            print(f"Unable to download video for {post_id!r}")
+            print(f"Unable to download video for {post_id!r}; unrecognised video type {post_data['video_type']!r}")
 
     elif post_data["type"] == "audio":
 
