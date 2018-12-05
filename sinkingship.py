@@ -36,12 +36,11 @@ def get_all_likes(*, blog_identifier, api_key):
         "api_key": api_key,
     }
 
+    api_url = f"https://api.tumblr.com/v2/blog/{blog_identifier}/likes"
+
     # First get the number of liked posts, so we can give the user some idea of
     # how many there are and how long the script will take.
-    resp = sess.get(
-        f"https://api.tumblr.com/v2/blog/{blog_identifier}/likes",
-        params=params
-    )
+    resp = sess.get(api_url, params=params)
 
     liked_count = resp.json()["response"]["liked_count"]
 
@@ -51,10 +50,7 @@ def get_all_likes(*, blog_identifier, api_key):
         }
 
         while True:
-            resp = sess.get(
-                f"https://api.tumblr.com/v2/blog/{blog_identifier}/likes",
-                params=params
-            )
+            resp = sess.get(api_url, params=params)
 
             posts = resp.json()["response"]["liked_posts"]
             yield from posts
@@ -68,3 +64,44 @@ def get_all_likes(*, blog_identifier, api_key):
             params.update(resp.json()["response"]["_links"]["next"]["query_params"])
 
     return tqdm.tqdm(iterator(), total=liked_count)
+
+
+def get_all_posts(*, blog_identifier, api_key):
+    sess = create_session()
+
+    params = {
+        "api_key": api_key,
+    }
+
+    api_url = f"https://api.tumblr.com/v2/blog/{blog_identifier}/posts"
+
+    # First get the number of liked posts, so we can give the user some idea of
+    # how many there are and how long the script will take.
+    resp = sess.get(api_url, params=params)
+
+    total_posts = resp.json()["response"]["total_posts"]
+
+    def iterator():
+        params = {
+            "api_key": api_key,
+            "reblog_info": True,
+            "notes_info": True,
+        }
+
+        while True:
+            resp = sess.get(api_url, params=params)
+
+            posts = resp.json()["response"]["posts"]
+            yield from posts
+
+            # An empty posts list tells us we've finished.
+            if not posts:
+                break
+
+            # We can only get the last 1000 posts with the offset parameter;
+            # instead look at the timestamps of the posts we retrieved and
+            # set that as the "before" parameter.
+            earliest_timestamp = min(p["timestamp"] for p in posts)
+            params["before"] = earliest_timestamp - 1
+
+    return tqdm.tqdm(iterator(), total=total_posts)
