@@ -8,7 +8,9 @@ import click
 from sinkingship import get_all_likes, save_post_metadata
 
 
-@click.command()
+@click.command(
+    help="Save all the metadata from your Tumblr likes."
+)
 @click.option(
     "--blog_identifier", required=True,
     prompt="What is your blog identifier? e.g. 'alexwlchan.tumblr.com'",
