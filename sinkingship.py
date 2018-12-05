@@ -213,7 +213,7 @@ def save_post_media_files(info_path):
 
         elif (
             post_data["video_type"] == "unknown" and
-            post_data.get("source_url").startswith("https://t.umblr.com/redirect?z=http%3A%2F%2Fwww.youtube.com")
+            post_data.get("source_url", "").startswith("https://t.umblr.com/redirect?z=http%3A%2F%2Fwww.youtube.com")
         ):
             source_url = parse_qs(urlparse(post_data["source_url"]).query)["z"][0]
             _download_with_youtube_dl(post_dir=post_dir, url=source_url)
