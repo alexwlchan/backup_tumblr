@@ -35,7 +35,17 @@ I've had these for private use for a while, and in the wake of Tumblr going on a
     $ cd backup_tumblr
     ```
 
-4.  Get yourself a Tumblr API key by registering an app at <https://www.tumblr.com/oauth/apps>.
+4.  Install the Python dependencies:
+
+    ```console
+    $ pip3 install -r requirements.txt
+    ```
+
+5.  Get yourself a Tumblr API key by registering an app at <https://www.tumblr.com/oauth/apps>.
+
+    You need the **OAuth Consumer Key** from this screen:
+
+    ![](tumblr_api_key.png)
 
 ## Usage
 
