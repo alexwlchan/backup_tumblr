@@ -10,7 +10,7 @@ The scripts try to download as much as possible, including:
 
 I've had these for private use for a while, and in the wake of Tumblr going on a deletion spree, I'm trying to make them usable by other people.
 
-![](stampede.jpg)
+![](stampede_400.jpg)
 
 <sup>Pictured: a group of Tumblr users fleeing the new content moderation policies. Image credit: <a href="https://wellcomecollection.org/works/depa2hf5">Wellcome Collection</a>, CC BY.</sup>
 
