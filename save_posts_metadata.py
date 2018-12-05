@@ -28,7 +28,7 @@ from sinkingship import get_all_posts, save_post_metadata
 def save_metadata(blog_identifier, api_key, dst):
     for post_data in get_all_posts(blog_identifier=blog_identifier, api_key=api_key):
         save_post_metadata(
-            dst=os.path.join(dst, "posts"),
+            dst=os.path.join(dst, blog_identifier.replace(".", "_"), "posts"),
             post_data=post_data
         )
 

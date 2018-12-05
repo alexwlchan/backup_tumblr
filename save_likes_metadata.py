@@ -28,7 +28,7 @@ from sinkingship import get_all_likes, save_post_metadata
 def save_metadata(blog_identifier, api_key, dst):
     for post_data in get_all_likes(blog_identifier=blog_identifier, api_key=api_key):
         save_post_metadata(
-            dst=os.path.join(dst, "likes"),
+            dst=os.path.join(dst, blog_identifier.replace(".", "_"), "likes"),
             post_data=post_data
         )
 
