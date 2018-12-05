@@ -11,3 +11,4 @@ idna==2.7                 # via requests
 requests==2.20.1
 tqdm==4.28.1
 urllib3==1.24.1           # via requests
+youtube-dl==2018.12.3

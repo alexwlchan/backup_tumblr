@@ -4,8 +4,9 @@
 import os
 
 import click
+import tqdm
 
-from sinkingship import find_all_metadata_files
+from sinkingship import find_all_metadata_files, save_post_media_files
 
 
 @click.command(
@@ -16,8 +17,9 @@ from sinkingship import find_all_metadata_files
     help="Directory where your metadata is saved."
 )
 def save_all_media_files(metadata):
-    for mf in find_all_metadata_files(path=metadata):
-        print(mf)
+    all_media_files = list(find_all_metadata_files(path=metadata))
+    for info_path in tqdm.tqdm(all_media_files):
+        save_post_media_files(info_path)
 
 
 if __name__ == '__main__':
