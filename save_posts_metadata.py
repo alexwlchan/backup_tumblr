@@ -34,3 +34,7 @@ def save_metadata(blog_identifier, api_key, dst):
 
 if __name__ == '__main__':
     save_metadata()
+    print(
+        "Note: if the progress bar didn't quite get to 100%, that's okay -- "
+        "it's only an estimate, and the Tumblr API doesn't always return everything."
+    )

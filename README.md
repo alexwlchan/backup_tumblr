@@ -35,7 +35,17 @@ I've had these for private use for a while, and in the wake of Tumblr going on a
     $ cd backup_tumblr
     ```
 
-4.  Get yourself a Tumblr API key by registering an app at <https://www.tumblr.com/oauth/apps>.
+4.  Install the Python dependencies:
+
+    ```console
+    $ pip3 install -r requirements.txt
+    ```
+
+5.  Get yourself a Tumblr API key by registering an app at <https://www.tumblr.com/oauth/apps>.
+
+    You need the **OAuth Consumer Key** from this screen:
+
+    ![](tumblr_api_key.png)
 
 ## Usage
 
@@ -76,6 +86,14 @@ If that sentence meant nothing: don't worry, the scripts will ask you for any in
 
 *   These scripts are provided "as is".
     File an issue if you have a problem, but I don't have much time for maintenance right now.
+
+*   Sometimes the Tumblr API claims to have more posts than it actually returns, and the effect is that the script appears to stop early, e.g. at 96%.
+
+    I'm reading the `total_posts` parameter from the API responses, and paginating through it as expected -- I have no idea what causes the discrepancy.
+
+## Acknowledgements
+
+Hat tip to [@cesy](https://github.com/cesy/) for nudging me to post it, and providing useful feedback on the initial version.
 
 ## Licence
 

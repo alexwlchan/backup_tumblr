@@ -2,8 +2,12 @@
 
 import json
 import os
+import subprocess
+from urllib.error import HTTPError
+from urllib.parse import parse_qs, urlparse
 from urllib.request import urlretrieve
 
+from bs4 import BeautifulSoup
 import requests
 import tqdm
 
