@@ -9,4 +9,5 @@ chardet==3.0.4            # via requests
 click==7.0
 idna==2.7                 # via requests
 requests==2.20.1
+tqdm==4.28.1
 urllib3==1.24.1           # via requests
