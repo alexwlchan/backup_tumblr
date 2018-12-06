@@ -43,7 +43,17 @@ I've had these for private use for a while, and in the wake of Tumblr going on a
 
 5.  Get yourself a Tumblr API key by registering an app at <https://www.tumblr.com/oauth/apps>.
 
-    You need the **OAuth Consumer Key** from this screen:
+    If you haven't done it before, start by clicking the **Register application** button:
+
+    ![](register_application.png)
+
+    Then fill in the details for your app.
+    Here's an example of what you could use:
+
+    ![](api_registration.png)
+
+    Once you've registered, you'll have a new entry in the list of applications.
+    You need the **OAuth Consumer Key**:
 
     ![](tumblr_api_key.png)
 
