@@ -52,8 +52,12 @@ I've had these for private use for a while, and in the wake of Tumblr going on a
 
     ![](api_registration.png)
 
-    You can leave any non-starred fields blank.
-    Unless you have a _lot_ of posts (20k or more), you shouldn't need to ask for a rate limit removal.
+    You can leave everything else blank.
+    Then scroll down and hit the "Register" button.
+
+    ![](rate_limits.png)
+
+    Note: unless you have a _lot_ of posts (20k or more), you shouldn't need to ask for a rate limit removal.
 
     Once you've registered, you'll have a new entry in the list of applications.
     You need the **OAuth Consumer Key**:
