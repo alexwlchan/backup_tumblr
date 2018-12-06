@@ -52,6 +52,8 @@ I've had these for private use for a while, and in the wake of Tumblr going on a
 
     ![](api_registration.png)
 
+    You can leave any non-starred fields blank.
+
     Once you've registered, you'll have a new entry in the list of applications.
     You need the **OAuth Consumer Key**:
 
