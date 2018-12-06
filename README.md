@@ -48,7 +48,7 @@ I've had these for private use for a while, and in the wake of Tumblr going on a
     ![](register_application.png)
 
     Then fill in the details for your app.
-    Here's an example of what you could use:
+    Here's an example of what you could use (but put your own email address!):
 
     ![](api_registration.png)
 
