@@ -2,6 +2,7 @@
 # -*- encoding: utf-8
 
 import os
+import sys
 import traceback
 
 import click
@@ -30,4 +31,8 @@ def save_all_media_files(metadata):
 
 
 if __name__ == '__main__':
+    # Allows us to omit the '--metadata' argument and click is still happy.
+    if len(sys.argv) == 2 and sys.argv[1] != "--help":
+        sys.argv = [sys.argv[0], "--metadata", sys.argv[1]]
+
     save_all_media_files()
