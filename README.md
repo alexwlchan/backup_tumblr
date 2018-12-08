@@ -33,7 +33,7 @@ If you're having problems, the easiest way to get my attention is by [**opening 
 3.  Clone this repository:
 
     ```console
-    $ git clone git@github.com:alexwlchan/backup_tumblr.git
+    $ git clone https://github.com/alexwlchan/backup_tumblr.git
     $ cd backup_tumblr
     ```
 
