@@ -218,7 +218,7 @@ def save_post_media_files(info_path):
             source_url = parse_qs(urlparse(post_data["source_url"]).query)["z"][0]
             _download_with_youtube_dl(post_dir=post_dir, url=source_url)
 
-        elif post_data["video_type"] == "instagram":
+        elif post_data["video_type"] in ("instagram", "vine"):
             # Normally there's a link to Instagram videos in the "permalink_url"
             # field, but sometimes this is missing.  I think it happens when the
             # Instagram video is taken down, and it's no longer viewable on Tumblr.
