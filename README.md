@@ -11,7 +11,7 @@ The scripts try to download as much as possible, including:
 I've had these for private use for a while, and in the wake of Tumblr going on a deletion spree, I'm trying to make them usable by other people.
 
 **If you're having problems, the easiest way to get my attention is by [opening an issue](https://github.com/alexwlchan/backup_tumblr/issues/new).**
-If you don't have a GitHub account, I have [alternative contact details](https://alexwlchan.net/contact/).
+If you don't have a GitHub account, there are alternative contact details [on my website](https://alexwlchan.net/contact/).
 
 ![](stampede_400.jpg)
 
