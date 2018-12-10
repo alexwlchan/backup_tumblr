@@ -120,6 +120,15 @@ If that sentence meant nothing: don't worry, the scripts will ask you for any in
 
     I'm reading the `total_posts` parameter from the API responses, and paginating through it as expected -- I have no idea what causes the discrepancy.
 
+## Alternatives
+
+These scripts only save the raw API responses and media files.
+
+It *doesn't* create a pretty index, or interface, or make it especially searchable.
+I like saving the complete response because it gives me as much flexibility as possible, but it means you need more work to do something useful later.
+
+If you're looking for a more full-featured, well-documented project, I've heard good things about [bbolli/tumblr-utils](https://github.com/bbolli/tumblr-utils).
+
 ## Acknowledgements
 
 Hat tip to [@cesy](https://github.com/cesy/) for nudging me to post it, and providing useful feedback on the initial version.
