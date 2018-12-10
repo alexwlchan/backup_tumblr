@@ -17,6 +17,15 @@ If you don't have a GitHub account, there are alternative contact details [on my
 
 <sup>Pictured: a group of Tumblr users fleeing the new content moderation policies. Image credit: <a href="https://wellcomecollection.org/works/depa2hf5">Wellcome Collection</a>, CC BY.</sup>
 
+## Motivation
+
+**These scripts are only for personal use.**
+Please don't use them to download posts and then make them publicly accessible without consent.
+Your own blog is yours to do what you want with; your likes and other people's posts are not.
+
+Some of what's on Tumblr is deeply personal content, and is either private or requires a login.
+Don't put it somewhere where the original creator can't control how it's presented or whether it's visible.
+
 ## Getting started
 
 1.  Install Python 3.6 or later.
