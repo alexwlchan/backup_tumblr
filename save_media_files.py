@@ -8,7 +8,7 @@ import traceback
 import click
 import tqdm
 
-from sinkingship import find_all_metadata_files, save_post_media_files
+from garbagesite import find_all_metadata_files, save_post_media_files
 
 
 @click.command(
