@@ -12,16 +12,20 @@ import requests
 import tqdm
 
 
-def create_session():
-    s = requests.Session()
+class TumblrSession:
 
-    # Error hook.  See https://alexwlchan.net/2017/10/requests-hooks/
-    def check_for_errors(resp, *args, **kwargs):
+    def __init__(self, api_key):
+        self.api_key = api_key
+        self.base_api_url = f"https://api.tumblr.com/v2"
+        self.sess = requests.Session()
+
+    def get(self, path, params=None):
+        if params is None:
+            params = {}
+        params["api_key"] = self.api_key
+        resp = self.sess.get(self.base_api_url + path, params=params)
         resp.raise_for_status()
-
-    s.hooks["response"].append(check_for_errors)
-
-    return s
+        return resp.json()
 
 
 def save_post_metadata(dst, post_data):
@@ -35,29 +39,21 @@ def save_post_metadata(dst, post_data):
 
 
 def get_all_likes(*, blog_identifier, api_key):
-    sess = create_session()
-
-    params = {
-        "api_key": api_key,
-    }
-
-    api_url = f"https://api.tumblr.com/v2/blog/{blog_identifier}/likes"
+    sess = TumblrSession(api_key=api_key)
 
     # First get the number of liked posts, so we can give the user some idea of
     # how many there are and how long the script will take.
-    resp = sess.get(api_url, params=params)
+    api_path = f"/blog/{blog_identifier}/likes"
+    resp = sess.get(api_path)
 
-    liked_count = resp.json()["response"]["liked_count"]
+    liked_count = resp["response"]["liked_count"]
 
     def iterator():
-        params = {
-            "api_key": api_key,
-        }
-
+        params = {}
         while True:
-            resp = sess.get(api_url, params=params)
+            resp = sess.get(api_path, params=params)
 
-            posts = resp.json()["response"]["liked_posts"]
+            posts = resp["response"]["liked_posts"]
             yield from posts
 
             # An empty posts list tells us we've finished.
@@ -66,37 +62,31 @@ def get_all_likes(*, blog_identifier, api_key):
 
             # Tumblr helpfully includes some query parameters in the response that
             # we can use to build our next request.
-            params.update(resp.json()["response"]["_links"]["next"]["query_params"])
+            params.update(resp["response"]["_links"]["next"]["query_params"])
 
     return tqdm.tqdm(iterator(), total=liked_count)
 
 
 def get_all_posts(*, blog_identifier, api_key):
-    sess = create_session()
-
-    params = {
-        "api_key": api_key,
-    }
-
-    api_url = f"https://api.tumblr.com/v2/blog/{blog_identifier}/posts"
+    sess = TumblrSession(api_key=api_key)
+    api_path = f"/blog/{blog_identifier}/posts"
 
     # First get the number of liked posts, so we can give the user some idea of
     # how many there are and how long the script will take.
-    resp = sess.get(api_url, params=params)
+    resp = sess.get(api_path)
 
-    total_posts = resp.json()["response"]["total_posts"]
+    total_posts = resp["response"]["total_posts"]
 
     def iterator():
         params = {
-            "api_key": api_key,
             "reblog_info": True,
             "notes_info": True,
         }
 
         while True:
-            resp = sess.get(api_url, params=params)
+            resp = sess.get(api_path, params=params)
 
-            posts = resp.json()["response"]["posts"]
+            posts = resp["response"]["posts"]
             yield from posts
 
             # An empty posts list tells us we've finished.
