@@ -76,6 +76,12 @@ Don't put it somewhere where the original creator can't control how it's present
 
     ![](tumblr_api_key.png)
 
+6.  If you're saving your likes, make your likes public by visiting `https://www.tumblr.com/settings/blog/BLOGNAME`, and turning on the "Share posts you like" setting:
+
+    ![](likes_public.png)
+
+    Otherwise the script can't see them!
+
 ## Usage
 
 There are three scripts in this repo:
