@@ -251,9 +251,7 @@ def save_post_media_files(info_path):
             query_string = parse_qs(urlparse(src_url).query)
             assert len(query_string["audio_file"]) == 1
             audio_file = query_string["audio_file"][0]
-            print(
-                f"Unable to download audio file for {post_id!r}: {audio_file!r}"
-            )
+            _download_asset(post_dir=post_dir, url=audio_file)
 
         elif post_data["audio_type"] == "spotify":
             source_url = post_data["audio_source_url"]
