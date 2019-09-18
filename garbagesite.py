@@ -31,11 +31,18 @@ class TumblrSession:
 def save_post_metadata(dst, post_data):
     post_id = post_data["id"]
     out_dir = os.path.join(dst, str(post_id)[:2], str(post_id))
+    out_path = os.path.join(out_dir, "info.json")
+
+    if os.path.exists(out_path):
+        return
+
     os.makedirs(out_dir, exist_ok=True)
 
     json_string = json.dumps(post_data, separators=(",", ":"))
-    with open(os.path.join(out_dir, "info.json"), "w") as outfile:
+    with open(out_path + ".tmp", "w") as outfile:
         outfile.write(json_string)
+
+    os.rename(out_path + ".tmp", out_path)
 
 
 def get_all_likes(*, blog_identifier, api_key):
@@ -120,7 +127,8 @@ def _download_asset(post_dir, url, suffix=""):
     if os.path.exists(out_path):
         return
     try:
-        urlretrieve(url, out_path)
+        urlretrieve(url, out_path + ".tmp")
+        os.rename(out_path + ".tmp", out_path)
     except HTTPError as err:
         print(f"Error trying to download URL {url!r} ({err})")
         return
