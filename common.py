@@ -38,7 +38,7 @@ def save_post_metadata(dst, post_data):
 
     os.makedirs(out_dir, exist_ok=True)
 
-    json_string = json.dumps(post_data, separators=(",", ":"))
+    json_string = json.dumps(post_data, indent=2, sort_keys=True)
     with open(out_path + ".tmp", "w") as outfile:
         outfile.write(json_string)
 
@@ -134,7 +134,7 @@ def _download_asset(post_dir, url, suffix=""):
         return
 
 
-def _download_with_youtube_dl(post_dir, url):
+def _download_with_youtube_dl(post_dir, url, cmd=None):
     """
     Download a video using youtube-dl.
     """
@@ -149,15 +149,15 @@ def _download_with_youtube_dl(post_dir, url):
     if os.path.exists(marker):
         return
 
+    if cmd is None:
+        cmd = ["youtube-dl", url]
+
     try:
-        subprocess.check_call(
-            ["youtube-dl", url],
-            stdout=subprocess.DEVNULL,
-            cwd=post_dir
-        )
+        subprocess.check_call(cmd, stdout=subprocess.DEVNULL, cwd=post_dir)
     except subprocess.CalledProcessError as err:
         post_id = os.path.basename(post_dir)
         print(f"Unable to download video for post ID {post_id} from {url!r} ({err}).")
+        raise
     else:
         open(marker, "wb").write(b"")
 
@@ -224,9 +224,19 @@ def save_post_media_files(info_path):
             try:
                 source_url = post_data["permalink_url"]
             except KeyError:
-                print(f"Unable to get Instagram video URL for {post_id!r}")
+                print(f"Unable to get video URL for {post_id!r}")
             else:
-                _download_with_youtube_dl(post_dir=post_dir, url=source_url)
+                # For Vine videos, downloading the HD version but the standard
+                # version works.  So fall back to that if the initial download fails.
+                # https://github.com/alexwlchan/backup_tumblr/issues/3
+                try:
+                    _download_with_youtube_dl(post_dir=post_dir, url=source_url)
+                except subprocess.CalledProcessError:
+                    _download_with_youtube_dl(
+                        post_dir=post_dir,
+                        url=source_url,
+                        cmd=["youtube-dl", "-f", "standard", url]
+                    )
 
         elif post_data["video_type"] == "flickr":
             source_url = parse_qs(urlparse(post_data["source_url"]).query)["z"][0]

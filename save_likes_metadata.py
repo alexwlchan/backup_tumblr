@@ -5,7 +5,7 @@ import os
 
 import click
 
-from garbagesite import get_all_likes, save_post_metadata
+from common import get_all_likes, save_post_metadata
 
 
 @click.command(
